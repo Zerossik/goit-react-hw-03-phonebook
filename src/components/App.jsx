@@ -15,6 +15,12 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate() {
+    const { contacts } = this.state;
+    console.log('Вызван DidMounth');
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }
+
   addContact = contact => {
     const { contacts } = this.state;
     const result = contacts.find(({ name }) => name === contact.name);
