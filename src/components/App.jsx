@@ -22,11 +22,10 @@ export class App extends Component {
       this.setState({ contacts: getContacts });
     }
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { contacts } = this.state;
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-    if (contacts.length === 0) {
-      localStorage.removeItem('contacts');
+    if (prevState.contacts !== contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
   }
 
